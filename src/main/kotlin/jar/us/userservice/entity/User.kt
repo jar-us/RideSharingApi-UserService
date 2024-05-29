@@ -4,7 +4,6 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "users", schema = "user_service")
-//@Table(name = "users")
 data class User(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
