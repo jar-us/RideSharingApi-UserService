@@ -1,0 +1,13 @@
+version: "3.8"  # Specify the Docker Compose file version
+services:
+  ride_sharing_user_service_db: # More descriptive service name
+    image: postgres:16  # Use the postgres image
+    environment:
+      POSTGRES_DB: ride_sharing_user_service_db  # Set the database name
+      POSTGRES_USER: ride_sharing_user_service_user  # Set the database user
+      POSTGRES_PASSWORD: 123  # Set the database password
+#    volumes:
+#      - ./init-db.sql:/docker-entrypoint-initdb.d:ro  # Execute init-db.sql on startup
+    ports:
+      - 5432:5432  # Map the container port to the host port
+    restart: always  # Always restart the container if it stops
