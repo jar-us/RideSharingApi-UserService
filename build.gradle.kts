@@ -1,41 +1,47 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.3.0" apply false
-    id("io.spring.dependency-management") version "1.1.5" apply false
+    id("org.springframework.boot") version "3.3.0"
+    id("io.spring.dependency-management") version "1.1.5"
     kotlin("jvm") version "1.9.24"
-    kotlin("plugin.spring") version "1.9.24" apply false
+    kotlin("plugin.spring") version "1.9.24"
 }
 
 group = "jar.us"
-version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
-allprojects {
-    repositories {
-        mavenCentral()
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
     }
 }
 
-subprojects {
-    apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "kotlin")
-    apply(plugin = "kotlin-spring")
+repositories {
+    mavenCentral()
+}
 
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "17"
-        }
-    }
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.postgresql:postgresql")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
 
-    dependencies {
-        implementation(kotlin("stdlib"))
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs += "-Xjsr305=strict"
+        jvmTarget = "17"
     }
+}
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-
-    tasks.withType<Jar> {
-        archiveBaseName.set("ridesharing-user-service")
-    }
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
