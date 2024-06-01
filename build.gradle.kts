@@ -10,8 +10,6 @@ plugins {
 group = "jar.us"
 version = "0.0.1-SNAPSHOT"
 
-
-
 allprojects {
     repositories {
         mavenCentral()
@@ -19,7 +17,6 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
@@ -28,11 +25,5 @@ subprojects {
         kotlinOptions {
             jvmTarget = "17"
         }
-    }
-
-    dependencies {
-        implementation(kotlin("stdlib"))
-        implementation("org.springframework.boot:spring-boot-starter")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 }
