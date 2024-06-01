@@ -4,11 +4,7 @@ plugins {
 }
 
 group = "jar.us"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
+version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -29,4 +25,8 @@ openApiGenerate {
             "models" to "" // Enable model generation
         )
     )
+}
+
+tasks.withType<Jar> {
+    archiveBaseName.set("ridesharing-user-service-specifications")
 }

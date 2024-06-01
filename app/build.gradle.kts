@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "jar.us"
-version = "0.0.1-SNAPSHOT"
+version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -21,4 +21,8 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<Jar> {
+    archiveBaseName.set("ridesharing-user-service-app")
 }

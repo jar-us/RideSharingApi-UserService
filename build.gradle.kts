@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.3.0" apply false
     id("io.spring.dependency-management") version "1.1.5" apply false
-    kotlin("jvm") version "1.9.24"
+    kotlin("jvm") version "1.9.24" apply false
     kotlin("plugin.spring") version "1.9.24" apply false
 }
 
 group = "jar.us"
-version = "0.0.1-SNAPSHOT"
+version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
 
 allprojects {
     repositories {
@@ -26,4 +26,8 @@ subprojects {
             jvmTarget = "17"
         }
     }
+}
+
+tasks.withType<Jar> {
+    archiveBaseName.set("ridesharing-user-service")
 }
