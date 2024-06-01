@@ -1,8 +1,8 @@
 spring:
   application:
     name: RideSharingApi-UserService
-#  banner:
-#    location: banner.txt
+  banner:
+    location: banner.txt
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/ride_sharing_user_service_db
 #    username: ride_sharing_user_service_user
