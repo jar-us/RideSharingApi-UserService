@@ -1,15 +1,9 @@
 plugins {
-    kotlin("jvm")
     id("org.openapi.generator") version ("7.5.0")
 }
 
 group = "jar.us"
 version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
-
-dependencies {
-    implementation(kotlin("stdlib"))
-}
-
 
 openApiGenerate {
     generatorName.set("kotlin")

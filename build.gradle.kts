@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.3.0" apply false
     id("io.spring.dependency-management") version "1.1.5" apply false
-    kotlin("jvm") version "1.9.24" apply false
+    kotlin("jvm") version "1.9.24"
     kotlin("plugin.spring") version "1.9.24" apply false
 }
 
@@ -26,8 +26,16 @@ subprojects {
             jvmTarget = "17"
         }
     }
-}
 
-tasks.withType<Jar> {
-    archiveBaseName.set("ridesharing-user-service")
+    dependencies {
+        implementation(kotlin("stdlib"))
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    tasks.withType<Jar> {
+        archiveBaseName.set("ridesharing-user-service")
+    }
 }
