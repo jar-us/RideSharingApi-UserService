@@ -8,4 +8,5 @@ class RideSharingApiUserServiceApplication
 
 fun main(args: Array<String>) {
     runApplication<RideSharingApiUserServiceApplication>(*args)
+    println("Hello, RideSharingApiUserServiceApplication!")
 }
