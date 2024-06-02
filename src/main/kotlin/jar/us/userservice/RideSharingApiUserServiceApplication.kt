@@ -6,7 +6,6 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class RideSharingApiUserServiceApplication
 
-fun main() {
-    runApplication<RideSharingApiUserServiceApplication>()
-    println("Hello, World!!!")
+fun main(args: Array<String>) {
+    runApplication<RideSharingApiUserServiceApplication>(*args)
 }
