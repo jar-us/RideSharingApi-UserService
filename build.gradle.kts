@@ -7,10 +7,10 @@ plugins {
     kotlin("plugin.spring") version "1.9.24" apply false
 }
 
-group = "jar.us"
-version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
 
 allprojects {
+    group = "jar.us"
+    version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
     repositories {
         mavenCentral()
     }

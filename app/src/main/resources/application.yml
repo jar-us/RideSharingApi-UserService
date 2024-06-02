@@ -3,14 +3,14 @@ spring:
     name: RideSharingApi-UserService
   banner:
     location: banner.txt
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/ride_sharing_user_service_db
-#    username: ride_sharing_user_service_user
-#    password: 123
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
-#  sql:
-#    init:
-#      mode: never
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ride_sharing_user_service_db
+    username: ride_sharing_user_service_user
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: never

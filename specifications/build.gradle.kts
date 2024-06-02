@@ -2,9 +2,6 @@ plugins {
     id("org.openapi.generator") version ("7.5.0")
 }
 
-group = "jar.us"
-version = findProperty("projectVersion")?.toString() ?: "0.0.1-SNAPSHOT"
-
 openApiGenerate {
     generatorName.set("kotlin")
     inputSpec.set("$projectDir/src/main/resources/user-service-openapi.yml")
