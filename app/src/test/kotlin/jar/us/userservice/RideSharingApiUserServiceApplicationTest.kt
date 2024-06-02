@@ -4,10 +4,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class RideSharingApiUserServiceApplicationTests {
-
+class RideSharingApiUserServiceApplicationTest {
     @Test
     fun contextLoads() {
     }
-
 }

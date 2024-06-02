@@ -1,4 +1,5 @@
 plugins {
+    kotlin("jvm")
     id("org.openapi.generator") version ("7.5.0")
 }
 
@@ -16,7 +17,8 @@ openApiGenerate {
             "models" to "" // Enable model generation
         )
     )
-}
+
+ }
 
 tasks.withType<Jar> {
     archiveBaseName.set("ridesharing-user-service-specifications")
