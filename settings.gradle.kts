@@ -3,5 +3,6 @@ plugins {
 }
 rootProject.name = "RideSharingApi-UserService"
 include("specifications")
-include("app")
 include("database")
+include("api")
+include("app")
