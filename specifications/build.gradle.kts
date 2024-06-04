@@ -1,10 +1,11 @@
 plugins {
-    kotlin("jvm")
-    id("org.openapi.generator") version ("7.5.0")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.openapi.generator)
+
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.1")
+    implementation(libs.jackson.core.get())
 }
 
 openApiGenerate {

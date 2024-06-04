@@ -1,13 +1,13 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.postgresql:postgresql")
+    implementation(libs.spring.boot.starter.data.jpa.get())
+    implementation(libs.postgresql)
 }
 
 tasks.withType<Jar> {
