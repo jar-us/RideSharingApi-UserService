@@ -8,6 +8,7 @@ plugins {
 dependencies {
     implementation(libs.spring.boot.starter.core.get())
     implementation(libs.kotlin.stdlib.get())
+//    implementation(libs.spring.boot.starter.data.jpa)
     implementation(project(":specifications"))
     implementation(project(":database"))
     implementation(project(":api"))

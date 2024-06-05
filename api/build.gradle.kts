@@ -12,8 +12,12 @@ repositories {
 dependencies {
     implementation(libs.kotlin.stdlib.get())
     implementation(libs.spring.boot.starter.web.get())
+    implementation(libs.spring.boot.starter.data.jpa)
+    implementation(project(":database"))
+    implementation(project(":specifications"))
 
     testImplementation(libs.spring.boot.starter.test.get())
+
 }
 
 tasks.withType<Jar> {

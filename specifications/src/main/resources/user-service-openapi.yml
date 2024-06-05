@@ -57,12 +57,12 @@ components:
     UserResponse:
       type: object
       properties:
-        id: { type: string, format: uuid }
-        name: { type: string }
-        email: { type: string }
-        phone_number: { type: string }
-        created_at: { type: string, format: date-time }
+        id: { type: integer, format: int64, example: 1 }
+        name: { type: string, example: Alice}
+        email: { type: string, example: alice@example.com }
+        phone_number: { type: string, example: 123-456-7890}
+        created_at: { type: string, format: date-time, example: 2021-01-01T00:00:00Z}
     Error:
       type: object
       properties:
-        error: { type: string }
+        error: { type: string, example: Invalid request }
