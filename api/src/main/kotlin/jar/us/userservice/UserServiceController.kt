@@ -7,30 +7,26 @@ import view.model.UserRegistrationViewModel
 import view.model.UserResponseViewModel
 import java.time.ZoneOffset
 
-
 @RestController
-class UserServiceController(
-    val userService: UserService,
-) {
+class UserServiceController(private val userService: UserService) {
 
     @PostMapping("/users/register")
-    fun register(@RequestBody request: UserRegistrationViewModel): UserResponseViewModel {
-        val registrationDto = UserRegistrationDto(
-            name = request.name!!,
-            email = request.email!!,
-            password = request.password!!,
-            phoneNumber = request.phoneNumber!!
-        )
-        val registeredUser = userService.registerUser(registrationDto)
-
-        return UserResponseViewModel(
-            id = registeredUser.id,
-            name = registeredUser.name,
-            phoneNumber = registeredUser.phoneNumber,
-            email = registeredUser.email,
-            createdAt = registeredUser.createdAt.atOffset(ZoneOffset.UTC)
-        )
-
-    }
-
+    fun register(@RequestBody request: UserRegistrationViewModel) =
+        userService.registerUser(request.toUserRegistration())
+            .toUserResponseViewModel()
 }
+
+fun UserRegistrationViewModel.toUserRegistration() = UserRegistration(
+    name = this.name!!,
+    email = this.email!!,
+    password = this.password!!,
+    phoneNumber = this.phoneNumber!!
+)
+
+fun RegisteredUser.toUserResponseViewModel() = UserResponseViewModel(
+    id = this.id,
+    name = this.name,
+    phoneNumber = this.phoneNumber,
+    email = this.email,
+    createdAt = this.createdAt.atOffset(ZoneOffset.UTC)
+)

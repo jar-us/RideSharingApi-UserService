@@ -1,6 +1,9 @@
 package jar.us.userservice
 
 import jakarta.persistence.*
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
@@ -8,29 +11,39 @@ import java.time.LocalDateTime
 @Repository
 interface UserRepository : JpaRepository<UserEntity, Long>
 
+
+@MappedSuperclass
+abstract class Auditable {
+
+    @CreatedDate
+    @Column(name = "created_date")
+    var createdDate: LocalDateTime? = null
+
+    @LastModifiedDate
+    @Column(name = "last_modified_date")
+    var lastModifiedDate: LocalDateTime? = null
+
+}
+
+
 @Entity
+@EntityListeners(AuditingEntityListener::class)
 @Table(name = "users", schema = "user_service")
-class UserEntity {
+data class UserEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    var id: Long? = null,
 
     @Column(nullable = false)
-    lateinit var name: String
+    var name: String = "",
 
     @Column(nullable = false)
-    lateinit var password: String
+    var email: String = "",
 
     @Column(nullable = false)
-    lateinit var email: String
+    var password: String = "",
 
     @Column(name = "phone_number", nullable = false)
-    lateinit var phoneNumber: String
-
-    @Column(name = "created_at", nullable = false)
-    var createdAt: LocalDateTime = LocalDateTime.now()
-
-    @Column(name = "updated_at", nullable = true)
-    var updatedAt: LocalDateTime? = null
-}
+    var phoneNumber: String = "",
+) : Auditable()
