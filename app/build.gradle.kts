@@ -1,20 +1,18 @@
 plugins {
-    id("org.springframework.boot") version "3.3.0"
-    id("io.spring.dependency-management") version "1.1.5"
-    kotlin("jvm") version "1.9.24"
-    kotlin("plugin.spring") version "1.9.24"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.spring.boot.core)
+    alias(libs.plugins.spring.boot.dependency.management)
+    alias(libs.plugins.spring.kotlin)
 }
 
 dependencies {
-
-    implementation("org.springframework.boot:spring-boot-starter")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-    implementation(kotlin("stdlib"))
-
+    implementation(libs.spring.boot.starter.core.get())
+    implementation(libs.kotlin.stdlib.get())
+    implementation(libs.spring.boot.starter.data.jpa)
     implementation(project(":specifications"))
     implementation(project(":database"))
-
+    implementation(project(":api"))
+    testImplementation(libs.spring.boot.starter.test.get())
 }
 
 tasks.withType<Jar> {
